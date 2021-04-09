@@ -30,6 +30,10 @@
     <%= form.label :categories %>
     <%= form.collection_select :category_ids, Category.order(:name), :id, :name, {}, class:"form-control", multiple: true    %>
   </div>
+  <div class="field">
+    <%= form.label :status %>
+    <%=  form.select :status , Product.statuses.keys.map {|u| [u.titleize, u]}, {}, class:"form-control"%>
+  </div>
 
   <div class="actions">
     <%= form.submit %>
