@@ -1,0 +1,76 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Products</h1>
+
+<table class = "table">
+  <thead>
+    <tr>
+      <th scope="col">Primary Image</th>
+      <th scope="col">Supporting Image</th>
+
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Stock</th>
+      <th scope="col">Categories</th>
+      <th scope="col">Status</th>
+
+
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+      <td>
+      <% if product.primary_image.attached? %>
+
+        <%= image_tag product.primary_image , width: "300px" , height: "300px" %>
+
+      <% end %>
+      </td>
+      <td>
+
+      <% if product.supporting_images.attached? %>
+        <% product.supporting_images.each do |image| %>
+
+
+
+
+       <%= image_tag image , width: "50px" , height: "50px" %>
+        <%end%>
+      <%end%>
+      </td>
+        <td><%= product.title %></td>
+        <td><%= product.description %></td>
+        <td><%= product.stock %></td>
+        <td> <%= product.categories.map(&:name).join(',')         %></td>
+        <td><%= product.status %></td>
+        <td><%= link_to 'Show', admins_product_path(product) %></td>
+        <td><%= link_to 'Edit', edit_admins_product_path(product) %></td>
+        <td><%= link_to 'Destroy', admins_product_path(product), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Product', new_admins_product_path %>
+
+<%= link_to 'Download CSV File ', admins_products_path(format: :csv) %>
+
+
+
+
+
+<%= form_tag admins_products_csv_upload_path , multipart: true  do  %>
+  <% if admin_signed_in? %>
+
+  <%= file_field_tag :csv_file  %>
+  <%= submit_tag :submit  %>
+  <% end %>
+
+
+<% end %>
