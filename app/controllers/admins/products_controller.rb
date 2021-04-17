@@ -74,6 +74,14 @@ class Admins::ProductsController < ApplicationController
     end
     redirect_to admins_products_path
   end
+  
+  def delete_image_attachment
+    @space_image = ActiveStorage::Attachment.find(params[:id])
+    @space_image.purge
+    redirect_back(fallback_location: request.referer)
+  end
+
+
 
 
 

@@ -39,8 +39,12 @@
   <% if product.primary_image.attached? %>
 
   <%= image_tag product.primary_image , width: "300px" , height: "300px" %>
-  <%= form.label :remove_primary_image %>
-  <%= form.check_box(:remove_primary_image) %>
+
+  <%= link_to 'Remove', delete_image_attachment_admins_product_url(product.primary_image.id),
+                  method: :delete,
+                  data: { confirm: 'Are you sure?' } %>
+
+
 
 
 
@@ -59,9 +63,12 @@
 
 
  <%= image_tag image , width: "50px" , height: "50px" %>
+ <%= link_to 'Remove', delete_image_attachment_admins_product_url(image.id),
+ method: :delete,
+ data: { confirm: 'Are you sure?' } %>
+
   <%end%>
-  <%= form.label :remove_supporting_images %>
-  <%= form.check_box(:remove_supporting_images) %>
+  
 <%end%>
 </p>
 
