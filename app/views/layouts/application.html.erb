@@ -31,7 +31,10 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if admin_signed_in? %>
-                    <li><%= link_to(' home ', admins_products_path) %></li>
+                   <li><%= link_to(' Home ', root_path                   ) %></li>
+                    <p>  &nbsp  &nbsp </p>
+
+                    <li><%= link_to(' Admin home ', admins_products_path) %></li>
                     <p>  &nbsp  &nbsp </p>
 
 
@@ -41,6 +44,8 @@
                     <p> &nbsp  &nbsp  </p>
                     <li><%= link_to " Sign out ", destroy_admin_session_path, :method => :delete %></li>
                 <% else %>
+                <li><%= link_to(' Home ', root_path                   ) %></li>
+                    <p>  &nbsp  &nbsp </p>
                   <li><%= link_to(' home ', admins_products_path) %></li>
                   <p>  &nbsp  &nbsp </p>
 
